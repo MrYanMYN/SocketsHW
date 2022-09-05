@@ -216,10 +216,14 @@ int main(int argc, char *argv[]){
 		if (n < 0) {
                         goto safe_exit;
                 }
-		n = send_to_server(sockfd, extension, EXT_SIZE);	//Write to server
-		if (n < 0) {
-                        goto safe_exit;
-                }
+
+//Comment
+
+		// n = send_to_server(sockfd, extension, EXT_SIZE);	//Write to server
+		// if (n < 0) {
+                //         goto safe_exit;
+                // }
+//Comment
                 printf("\t Sending Image File\n");
 		n = send_to_server(sockfd, buffer, size_of_file);	//Write to server
 		// if (n < size_of_file) {
@@ -236,10 +240,10 @@ int main(int argc, char *argv[]){
 		if (n < 0) {
                         goto safe_exit;
                 }
-		n = send_to_server(sockfd, extension, EXT_SIZE);	//Write to server
-		if (n < 0) {
-                        goto safe_exit;
-                }
+		// n = send_to_server(sockfd, extension, EXT_SIZE);	//Write to server
+		// if (n < 0) {
+                //         goto safe_exit;
+                // }
                 printf("\t Sending Text File\n");
 		n = send_to_server(sockfd, new_buffer, size_of_text_file);	//Write to server
 		if (n < size_of_text_file) {

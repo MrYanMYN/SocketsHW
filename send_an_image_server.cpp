@@ -159,6 +159,8 @@ int main(int argc, char *argv[]){
                             error("Error reading from Client");
                 } while(n);*/
 
+// Comment
+
                 n = read(newsockfd, &buffer_size, sizeof(int));//Read incoming data streams
                 if(n < 0)
                     error("Error reading size from Client");
@@ -166,16 +168,19 @@ int main(int argc, char *argv[]){
                 void* void_buffer; 
                 void_buffer = malloc(buffer_size);
                 buffer = (char*)void_buffer;
-                n = read(newsockfd, extension, 4);//Read incoming data streams
-                if(n < 4)
-                    error("Error reading extension from Client");
-                n = read(newsockfd, buffer, buffer_size);
+                // n = read(newsockfd, extension, 4);//Read incoming data streams
+                // if(n < 4)
+                //     error("Error reading extension from Client");
+                // n = read(newsockfd, buffer, buffer_size);
+
+// Comment
+
                 if(n < buffer_size)
                     error("Error reading file from Client");
                 
                 strcpy(file_name, "incoming-img");
                 strcat(file_name, ".");
-                strcat(file_name, extension);
+                strcat(file_name, "jpg");
                 fp = fopen(file_name, "wb");
                 if (fp == NULL) {
                     error("Error opening file");
@@ -210,9 +215,11 @@ int main(int argc, char *argv[]){
                 void* void_buffer_two; 
                 void_buffer_two = malloc(buffer_size);
                 buffer = (char*)void_buffer_two;
-                n = read(newsockfd, extension_two, 4);//Read incoming data streams
-                if(n < 4)
-                    error("Error reading extension from Client");
+
+                // n = read(newsockfd, extension_two, 4);//Read incoming data streams
+                // if(n < 4)
+                //     error("Error reading extension from Client");
+                
                 n = read(newsockfd, buffer, buffer_size);
                 if(n < buffer_size)
                     error("Error reading file from Client");
