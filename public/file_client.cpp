@@ -30,20 +30,20 @@ class Client_socket{
             address.sin_family = AF_INET;
             address.sin_port = htons( PORT );
             address_length = sizeof(address);
-            if(inet_pton(AF_INET, "127.0.0.1", &address.sin_addr)<=0) { 
+            if(inet_pton(AF_INET, "172.20.10.4", &address.sin_addr)<=0) { 
                 cout<<"[ERROR] : Invalid address\n";
             }
 
             create_connection();
             
-            file.open(".//recived.jpg", ios::out | ios::trunc | ios::binary);
-            if(file.is_open()){
-                cout<<"[LOG] : File Creted.\n";
-            }
-            else{
-                cout<<"[ERROR] : File creation failed, Exititng.\n";
-                exit(EXIT_FAILURE);
-            }
+            // file.open(".//recived.jpg", ios::out | ios::trunc | ios::binary);
+            // if(file.is_open()){
+            //     cout<<"[LOG] : File Creted.\n";
+            // }
+            // else{
+            //     cout<<"[ERROR] : File creation failed, Exititng.\n";
+            //     exit(EXIT_FAILURE);
+            // }
         }
 
         void create_socket(){

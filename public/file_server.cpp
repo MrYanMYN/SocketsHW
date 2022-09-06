@@ -36,7 +36,7 @@ class Server_socket{
             bind_socket();
             set_listen_set();
             accept_connection();
-            read_image_file("./620.jpg", &buffer, &buffer_size);
+            read_image_file("./image.jpg", &buffer, &buffer_size);
 
 
             // file.open(".//Data//Server//server_png.png", ios::in | ios::binary);
