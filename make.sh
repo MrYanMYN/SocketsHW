@@ -1,22 +1,12 @@
 echo '=========================='
 echo 'Compiling script [v]'
 echo '=========================='
-g++ send_an_image_server.cpp -o ./out/server.out
-g++ send_an_image_client.cpp -o ./out/client.out
-
+g++ -std=gnu++11 client.cpp -o client.out -l sqlite3
+g++ -std=gnu++11 server.cpp -o server.out -l sqlite3
 echo '=========================='
 echo 'Running script [v]'
 echo '=========================='
-/bin/sh -ec './out/server.out 8700' &
-/bin/sh -ec './out/client.out localhost 8700'
+/bin/sh -ec './server.out' &
+/bin/sh -ec './client.out'
 
-echo '=========================='
-echo 'Waiting 5 seconds'
-echo '=========================='
-sleep 5
 
-echo '=========================='
-echo 'Removing artifects'
-echo '=========================='
-rm incoming-img.jpg
-rm incoming-text.txt

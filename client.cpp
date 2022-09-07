@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <time.h>
+#include "db_handler.cpp"
+#include "nlohmann/json.hpp"
 
 using namespace std;
 
@@ -21,6 +24,7 @@ class Client_socket{
 
     char *buffer    = NULL;
     int buffer_size = 0;
+    sql_handler db;
 
     public:
         Client_socket(){
@@ -86,8 +90,12 @@ class Client_socket{
 
             cout<<"[LOG] : Data received "<<valread<<" bytes\n";
             cout<<"[LOG] : Saving data to file.\n";
+            srand(time(0));
+            // unique
+            string id = to_string(rand() % 100000);
+            string path= "./database/photos/"+id + ".jpg";
 
-            fp = fopen("new.jpg", "wb");
+            fp = fopen(path.c_str(), "wb");
             fwrite(buffer, buffer_size, 1, fp);
 
             cout<<"[LOG] : File Saved.\n";
@@ -103,7 +111,12 @@ class Client_socket{
             //==========================
             //BEN INTEGRATES DATABASE AND JSON PARSING HERE
             //++++++++++++++++++++++++++
-
+            cout<<"OWO 0 ";
+            nlohmann::json j_str; 
+            j_str = nlohmann::json::parse(string_buffer);
+            j_str["id"] = id;
+            j_str["photo_path"]= path;
+            this->db.insert_data(j_str.dump());
         }
 };
 
