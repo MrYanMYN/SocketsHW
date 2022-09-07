@@ -6,12 +6,12 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
+#include "nlohmann/json.hpp"
 using namespace std;
 
 class Server_socket{
     fstream file;
-
+    
     int PORT;
     
     int general_socket_descriptor;
@@ -19,7 +19,7 @@ class Server_socket{
 
     struct sockaddr_in address;
     int address_length;
-
+    nlohmann::json j_str = nlohmann::json::parse(std::ifstream("j.json"));
     int buffer_size = 0;
     char *buffer     = NULL;
 
@@ -103,8 +103,8 @@ class Server_socket{
             cout<<"[LOG] : File Transfer Complete.\n";
             
             // Sending Text
-
-            std::string contents = "Testing String";
+            /// should be loop to enter correctly the json string 
+            std::string contents =  j_str.dump();
 
             cout<<"[LOG] : Transmission Data String "<<contents.length()<<" Bytes.\n";
 
